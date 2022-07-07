@@ -1,14 +1,18 @@
 package com.projeto.curso.controller;
 
+import java.util.List;
+
 import com.projeto.curso.dto.CursoDto;
 import com.projeto.curso.entity.Curso;
 import com.projeto.curso.service.CursoService;
 
+import org.apache.catalina.connector.Response;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,6 +35,12 @@ public class CursoController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(service.save(curso));
 		
 		
+	}
+	
+	@GetMapping("/get")
+	public ResponseEntity<List<Curso>> get(){
+		
+		return ResponseEntity.status(HttpStatus.OK).body(service.findAll());
 	}
 	
 	
