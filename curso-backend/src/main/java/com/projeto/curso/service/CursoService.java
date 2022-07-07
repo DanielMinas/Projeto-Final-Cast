@@ -34,6 +34,13 @@ public class CursoService {
 	}
 
 
+	public void delete(Curso curso) {
+		// TODO Auto-generated method stub
+		repository.delete(curso);
+		
+	}
+
+
 	
 
 }

@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -55,5 +56,13 @@ public class CursoController {
 	    }
 	
 	
-	
+	  @DeleteMapping("/delete/{id}")
+	    public ResponseEntity<Object> delete(@PathVariable(value = "id") Long id){
+		   Optional<Curso> cursoOptional = service.findById(id);
+	        if (!cursoOptional.isPresent()) {
+	            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Não há curso com este ID!!");
+	        }
+	        service.delete(cursoOptional.get());
+	        return ResponseEntity.status(HttpStatus.OK).body("Curso deletado com sucesso");
+	    }
 }
