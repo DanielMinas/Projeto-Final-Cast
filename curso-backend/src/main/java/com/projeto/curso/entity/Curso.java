@@ -19,9 +19,9 @@ public class Curso {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long idCurso;
 	private String descricao;
-	@JsonFormat(pattern = "yyyy/MM/dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dataInicio;
-	@JsonFormat(pattern = "yyyy/MM/dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dataTermino;
 	private Integer quantidade;
 	@Enumerated(EnumType.STRING)
