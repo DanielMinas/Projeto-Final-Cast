@@ -1,6 +1,7 @@
 package com.projeto.curso.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.projeto.curso.dto.CursoDto;
 import com.projeto.curso.entity.Curso;
@@ -13,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,11 +39,21 @@ public class CursoController {
 		
 	}
 	
-	@GetMapping("/get")
+	@GetMapping("/getAll")
 	public ResponseEntity<List<Curso>> get(){
 		
 		return ResponseEntity.status(HttpStatus.OK).body(service.findAll());
 	}
+	
+	  @GetMapping("/get/{id}")
+	    public ResponseEntity<Object> getId(@PathVariable(value = "id") Long id){
+	        Optional<Curso> cursoOptional = service.findById(id);
+	        if (!cursoOptional.isPresent()) {
+	            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Não há curso com este ID!!");
+	        }
+	        return ResponseEntity.status(HttpStatus.OK).body(cursoOptional.get());
+	    }
+	
 	
 	
 }

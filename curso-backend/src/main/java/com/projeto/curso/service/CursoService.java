@@ -1,6 +1,7 @@
 package com.projeto.curso.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.projeto.curso.entity.Curso;
 import com.projeto.curso.repository.ICursoRepository;
@@ -24,6 +25,12 @@ public class CursoService {
 	public List<Curso> findAll() {
 		// TODO Auto-generated method stub
 		return repository.findAll();
+	}
+
+
+	public Optional<Curso> findById(Long id) {
+		// TODO Auto-generated method stub
+		return repository.findById(id);
 	}
 
 
