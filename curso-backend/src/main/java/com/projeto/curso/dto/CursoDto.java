@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import com.projeto.curso.entity.Categoria;
 
+
 public class CursoDto {
 
 	private Long idCurso;
@@ -50,6 +51,7 @@ public class CursoDto {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
+
 
 
 

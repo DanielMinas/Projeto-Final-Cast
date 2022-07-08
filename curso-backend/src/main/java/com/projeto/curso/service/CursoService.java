@@ -1,5 +1,6 @@
 package com.projeto.curso.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,8 +17,8 @@ public class CursoService {
 	ICursoRepository repository;
 	
 	
-	public Curso save(Curso curso) {
-		// TODO Auto-generated method stub
+	public Curso save(Curso curso) {		
+		validaDataCadastro(curso);
 		return repository.save(curso);
 	}
 
@@ -29,18 +30,28 @@ public class CursoService {
 
 
 	public Optional<Curso> findById(Long id) {
-		// TODO Auto-generated method stub
+
 		return repository.findById(id);
 	}
 
 
 	public void delete(Curso curso) {
-		// TODO Auto-generated method stub
+		validaExclusao(curso);
 		repository.delete(curso);
 		
 	}
+	public void validaDataCadastro(Curso curso) {
+		if(curso.getDataInicio().isBefore(LocalDate.now())) {
+			throw new RuntimeException("Data inicial deve ser superior à " + LocalDate.now());
+		}
+	}
+	public void validaExclusao(Curso curso) {
+		if(curso.getDataTermino().isBefore(LocalDate.now())) {
+			throw new RuntimeException("Não pode ser excluido, pois o curso já terminou");
+		}
+	}
 
-
+	
 	
 
 }

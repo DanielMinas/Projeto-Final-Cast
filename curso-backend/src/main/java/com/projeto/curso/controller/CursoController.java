@@ -37,9 +37,7 @@ public class CursoController {
 		BeanUtils.copyProperties(dto, curso);
 		
 		return ResponseEntity.status(HttpStatus.CREATED).body(service.save(curso));
-		
-		
-	}
+		}
 	
 	@GetMapping("/getAll")
 	public ResponseEntity<List<Curso>> get(){
