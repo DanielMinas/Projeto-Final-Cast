@@ -17,8 +17,13 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import org.hibernate.envers.AuditTable;
+import org.hibernate.envers.Audited;
+
 @Entity
 @Table(name ="curso")
+@Audited
+@AuditTable("curso_log")
 public class Curso {
 
 	@Id

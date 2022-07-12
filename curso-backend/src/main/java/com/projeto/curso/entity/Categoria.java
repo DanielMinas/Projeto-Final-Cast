@@ -15,8 +15,12 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import org.hibernate.envers.Audited;
+import org.hibernate.envers.RelationTargetAuditMode;
+
 @Entity
 @Table(name = "categoria")
+@Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
 public class Categoria {
 
 	@Id
