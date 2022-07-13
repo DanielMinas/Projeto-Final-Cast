@@ -42,7 +42,7 @@ public class CursoService {
 		Root<Curso> curso = cq.from(Curso.class);
 		List<Predicate> predicateList = new ArrayList<Predicate>();
 
-		if (descricao != null) {
+		if (descricao != "") {
 			Predicate descricaoPredicate = cb.equal(curso.get("descricao"), descricao);
 			predicateList.add(descricaoPredicate);
 		}
@@ -93,10 +93,8 @@ public class CursoService {
 
 	public void validaPeridoCadastro(Curso curso) {
 
-		List<Curso> listaCurso = repository.findByDataInicioLessThanEqualAndDataTerminoGreaterThanEqual(
-				curso.getDataInicio(), curso.getDataTermino());
-
-		if (listaCurso.size() > 0) {
+		Integer listaCurso = repository.queryPeriodo(curso.getDataInicio(), curso.getDataTermino());
+		if (listaCurso > 0) {
 			throw new RuntimeException("Existe(m) curso(s) planejados(s) dentro do período informado");
 		}
 
