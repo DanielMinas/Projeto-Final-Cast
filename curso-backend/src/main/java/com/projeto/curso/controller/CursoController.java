@@ -1,5 +1,6 @@
 package com.projeto.curso.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,6 +11,8 @@ import com.projeto.curso.service.CursoService;
 import org.apache.catalina.connector.Response;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -20,6 +23,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -40,9 +44,12 @@ public class CursoController {
 		}
 	
 	@GetMapping("/getAll")
-	public ResponseEntity<List<Curso>> get(){
+	public ResponseEntity<List<Curso>> get(@RequestParam(required = false) String descricao,
+			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataInicio,
+			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataTermino
+			){
 		
-		return ResponseEntity.status(HttpStatus.OK).body(service.findAll());
+		return ResponseEntity.status(HttpStatus.OK).body(service.findAll(descricao, dataInicio, dataTermino));
 	}
 	
 	  @GetMapping("/get/{id}")
