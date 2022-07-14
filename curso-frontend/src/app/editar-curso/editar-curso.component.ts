@@ -92,6 +92,7 @@ export class EditarCursoComponent implements OnInit {
        
           this.mensagem = "Curso editado com sucesso";
           this.formEdicao.reset();
+          window.location.href = "/consultar-curso";
         },
         e => {
       

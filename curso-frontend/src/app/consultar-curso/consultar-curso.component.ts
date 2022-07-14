@@ -84,8 +84,8 @@ export class ConsultarCursoComponent implements OnInit {
   }
 
   limpar(){
-    this.formPeriodo.reset();
-    this.ngOnInit();
+  this.formPeriodo.reset();
+  window.location.href = "/consultar-curso";
 
   }
 

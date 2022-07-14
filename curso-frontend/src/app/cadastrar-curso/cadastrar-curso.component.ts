@@ -72,6 +72,7 @@ onSubmit(): void{
       this.mensagem = "Curso cadastrado com sucesso";
       this.formCadastro.reset();
       window.location.href = "/consultar-curso";
+     ;
     },
     e => {
    

@@ -18,17 +18,31 @@
                                 <div class="col-md-3">
                                     <label for="">Descricao</label>
                                     <input type="text" class="form-control" formControlName="descricao">
+                                    <div class="text-danger" *ngIf="form.descricao.touched && form.descricao.invalid">
+                                        <span *ngIf="form.descricao.errors.required">
+                                            Informe o a descricao do curso
+                                        </span>
+                                    </div>
                                 </div>
 
                                 <div class="col-md-3">
                                     <label for="">Data de Inicio</label>
                                     <input type="date" class="form-control" formControlName="dataInicio">
+                                       <div class="text-danger" *ngIf="form.dataInicio.touched && form.dataInicio.invalid">
+                                    <span *ngIf="form.dataInicio.errors.required">
+                                        Informe a data de inicio
+                                    </span>
+                                </div>
                                 </div>
 
                                 <div class="col-md-3">
                                     <label for="">Data de Termino</label>
                                     <input type="date" class="form-control" formControlName="dataTermino">
-
+                                    <div class="text-danger" *ngIf="form.dataTermino.touched && form.dataTermino.invalid">
+                                        <span *ngIf="form.dataTermino.errors.required">
+                                            Informe a Data de Termino
+                                        </span>
+                                    </div>
                                 </div>
                                
                                 <div class="col-md-1">
@@ -39,7 +53,7 @@
                                       </svg></button>
                                 </div>
                                 <div class="col-md-1">
-                                    <button type="submit" class="btn btn-outline-warning" style="margin-top: 23px"
+                                    <button  type="reset" class="btn btn-outline-warning" style="margin-top: 23px"
                                         (click)="limpar()">Limpar</button>
                                 </div>
 
