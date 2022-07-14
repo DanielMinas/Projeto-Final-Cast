@@ -31,6 +31,7 @@ public class CursoService {
 	public Curso save(Curso curso) {
 		validaDataCadastro(curso);
 		validaPeridoCadastro(curso);
+		regraValidaDescricao(curso);
 		return repository.save(curso);
 	}
 
@@ -100,4 +101,36 @@ public class CursoService {
 
 	}
 
+	public void cursoExiste(Curso curso) {
+	Integer validacaoId = repository.editar(curso.getDescricao(), curso.getIdCurso());
+	if(validacaoId >0) {
+		throw new RuntimeException("Curso ja existente");
+	}
+	
+	
 }
+	public void editar(Curso curso) {
+		Integer editar =repository.pesquisaCurso(curso.getDataInicio(), curso.getDataTermino(), curso.getIdCurso());
+		cursoExiste(curso);
+		validaDataCadastro(curso);
+	
+		if(editar >0){
+			throw new RuntimeException("Tem um curso existente nesse periodo");
+		}
+		repository.save(curso);	
+	
+	}
+	public void regraValidaDescricao(Curso curso) {
+
+		for (Curso c : repository.findAll()) {
+			if (c.getDescricao().equals(curso.getDescricao())) {
+				throw new RuntimeException("Curso com essa descrição já é existente");
+			}
+		}
+
+	}
+
+}
+
+
+	
