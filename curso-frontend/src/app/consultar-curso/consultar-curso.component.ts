@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 export class ConsultarCursoComponent implements OnInit {
   curso: any[] = [];
 
-  formPesquisa!: FormGroup;
+  formConsulta!: FormGroup;
   constructor(
     private httpClient: HttpClient,
 
@@ -20,7 +20,7 @@ export class ConsultarCursoComponent implements OnInit {
   //método executado quando o componente é aberto
   ngOnInit(): void {
 
-    this.formPesquisa = new FormGroup({
+    this.formConsulta = new FormGroup({
       //campos formulario
       descricao: new FormControl('', [Validators.required]),
       dataInicio: new FormControl('', [Validators.required]),
@@ -30,7 +30,7 @@ export class ConsultarCursoComponent implements OnInit {
 
     })
 
-    this.httpClient.get(environment.apiUrl + '/getAll?descricao=' + this.formPesquisa.value.descricao + "&dataInicio=" + this.formPesquisa.value.dataInicio + "&dataTermino=" + this.formPesquisa.value.dataTermino)
+    this.httpClient.get(environment.apiUrl + '/getAll?descricao=' + this.formConsulta.value.descricao + "&dataInicio=" + this.formConsulta.value.dataInicio + "&dataTermino=" + this.formConsulta.value.dataTermino)
       .subscribe(
         (data) => {
           this.curso = data as any[];
@@ -61,4 +61,26 @@ export class ConsultarCursoComponent implements OnInit {
     }
   }
 
+  formPeriodo = new FormGroup({
+
+    descricao: new FormControl(''),
+    dataInicio: new FormControl(''),
+    dataTermino: new FormControl(''),
+  })
+
+  get form(): any {
+    return this.formPeriodo.controls;
+  }
+
+  onSubmit(): void {
+
+    this.httpClient.get(environment.apiUrl + "/getAll?descricao=" + this.formPeriodo.value.descricao + "&dataInicio=" + this.formPeriodo.value.dataInicio + "&dataTermino=" + this.formPeriodo.value.dataTermino).subscribe(
+      (data) => { this.curso = data as any[]; },
+      (e) => {
+        
+      },
+    )
+  }
+
+  
 }

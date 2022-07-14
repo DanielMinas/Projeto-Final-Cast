@@ -1,3 +1,92 @@
 
 
 
+<div class="container">
+
+    <div class="row-1">
+        
+        <div class="col-md-6">
+        <h5 >Edição de cursos</h5>
+        </div>
+    </div>
+    <div *ngIf="mensagem" class="mb-3 alert alert-primary">
+        <strong>{{mensagem}}</strong>
+      </div>
+    
+    <div class="card" id="card">
+        <div class="card-body" id="card-body">
+    <form [formGroup]="formEdicao" (ngSubmit)="onSubmit()">
+        <input type="hidden" formControlName="idCurso" />
+        <div class="row mb-3"  >
+            <div class="col-md-6">
+                <label for="descricao">Descrição</label>
+                <input type="text" class="form-control" formControlName="descricao">
+                <div class="text-danger" *ngIf="form.descricao.touched && form.descricao.invalid">
+                    <span *ngIf="form.descricao.errors.required">
+                        Informe o a descrição do curso
+                    </span>
+                </div>
+            </div>
+        </div>
+            <div class="row mb-3">
+    
+                <div class="col-md-3">
+                    <label for="dataInicio">Data de Inicio</label>
+                    <input type="date" class="form-control" formControlName="dataInicio">
+                    <div class="text-danger" *ngIf="form.dataInicio.touched && form.dataInicio.invalid">
+                        <span *ngIf="form.dataInicio.errors.required">
+                            Informe a Data de Início
+                        </span>
+                    </div>
+                </div>
+    
+    
+    
+            <div class="col-md-3">
+                <label for="dataTermino">Data de Término</label>
+                <input type="date" class="form-control" formControlName="dataTermino">
+                <div class="text-danger" *ngIf="form.dataTermino.touched && form.dataTermino.invalid">
+                    <span *ngIf="form.dataTermino.errors.required">
+                        Informe a Data de Término
+                    </span>
+                </div>
+            </div>
+    
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-3">
+                <label for="quantidade">Quantidade de alunos</label>
+                <input type="number" class="form-control" formControlName="quantidade">
+                <div class="text-danger" *ngIf="form.quantidade.touched && form.quantidade.invalid">
+                    <span *ngIf="form.quantidade.errors.required">
+                        Informe a Quantidade de Alunos
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-3">
+                <label for="categoria">Categoria</label>
+                <select class="form-select" formControlName="categoria" id="categoria">
+                  <option *ngFor="let categoria of categoria" value="{{categoria.idCategoria}}">{{categoria.categoria}}</option>
+                </select>
+    
+                <div class="text-danger" *ngIf="form.categoria.touched && form.categoria.invalid">
+                    <span *ngIf="form.categoria.errors.required">
+                        Informe a Categoria
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <input type="submit"  id="botao" [disabled]="!formEdicao.valid" class="btn btn-primary" value="Realizar o Cadastro">
+            </div>
+        </div>
+        
+    
+        
+        
+      
+    </form>
+        </div>
+    </div>
+    </div>
