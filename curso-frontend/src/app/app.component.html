@@ -1,32 +1,32 @@
+<div class="row">
+  <div class=" col-2">
+    <div class=" col-2 d-flex flex-column flex-shrink-1 p-3 " id="sidebar">
+      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+        <span class="fs-4">Cast Cursos</span>
+      </a>
+      <hr>
+      <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
 
 
-  <div class="row">
-    <div class=" col-2">
-      <div class=" col-2 d-flex flex-column flex-shrink-1 p-3 " id="sidebar">
-        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-          <span class="fs-4">Cast Cursos</span>
-        </a>
-        <hr>
-        <ul class="nav nav-pills flex-column mb-auto">
-          <li class="nav-item">
+          <p class="curso-side-bar">
+            <strong>Cursos</strong>
 
+          </p>
+          <hr>
+        </li>
+        <li><a class=" nav-link link-dark" id="cadastrar" aria-current="page" routerLink="cadastrar-curso">Adicionar
+            Curso</a></li>
+        <li><a class="nav-link link-dark" id="consultar" aria-current="page" routerLink="consultar-curso">Consultar
+            Curso</a></li>
 
-            <p class="curso-side-bar">
-              <strong>Cursos</strong>
-            
-            </p>
-            <hr>
-          </li>
-          <li><a class=" nav-link link-dark" id="cadastrar" aria-current="page" routerLink="cadastrar-curso">Cadastrar Curso</a></li>
-          <li><a class="nav-link link-dark"  id="consultar" aria-current="page" routerLink="consultar-curso">Consultar Curso</a></li>
-
-        </ul>
-        <hr>
-
-      </div>
-    </div>
-    <div class="col-8">
-          <router-outlet></router-outlet>
-
+      </ul>
+      <hr>
+      <a href="/" class="btn btn-outline-danger " role="button">Voltar</a>
     </div>
   </div>
+  <div class="col-8">
+    <router-outlet></router-outlet>
+
+  </div>
+</div>

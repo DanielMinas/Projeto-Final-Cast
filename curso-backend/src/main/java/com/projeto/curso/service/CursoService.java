@@ -17,6 +17,7 @@ import com.projeto.curso.entity.Curso;
 import com.projeto.curso.repository.ICursoRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -82,13 +83,13 @@ public class CursoService {
 
 	public void validaDataCadastro(Curso curso) {
 		if (curso.getDataInicio().isBefore(LocalDate.now())) {
-			throw new RuntimeException("Data inicial deve ser superior à " + LocalDate.now());
+			throw new RuntimeException("Erro no cadastro : A data inicial deve ser superior à " +LocalDate.now());
 		}
 	}
 
 	public void validaExclusao(Curso curso) {
 		if (curso.getDataTermino().isBefore(LocalDate.now())) {
-			throw new RuntimeException("Não pode ser excluido, pois o curso já terminou");
+			throw new RuntimeException("Erro na exclusão : Curso já concluiu");
 		}
 	}
 
@@ -96,7 +97,7 @@ public class CursoService {
 
 		Integer listaCurso = repository.queryPeriodo(curso.getDataInicio(), curso.getDataTermino());
 		if (listaCurso > 0) {
-			throw new RuntimeException("Existe(m) curso(s) planejados(s) dentro do período informado");
+			throw new RuntimeException("Erro no cadastro : Existe(m) curso(s) planejados(s) dentro do período informado");
 		}
 
 	}
@@ -104,7 +105,7 @@ public class CursoService {
 	public void cursoExiste(Curso curso) {
 	Integer validacaoId = repository.editar(curso.getDescricao(), curso.getIdCurso());
 	if(validacaoId >0) {
-		throw new RuntimeException("Curso ja existente");
+		throw new RuntimeException("Erro no cadastro : Curso já é existente");
 	}
 	
 	
@@ -115,7 +116,7 @@ public class CursoService {
 		validaDataCadastro(curso);
 	
 		if(editar >0){
-			throw new RuntimeException("Tem um curso existente nesse periodo");
+			throw new RuntimeException(" Erro na edição: Há curso existente nesse periodo");
 		}
 		repository.save(curso);	
 	
@@ -124,7 +125,7 @@ public class CursoService {
 
 		for (Curso c : repository.findAll()) {
 			if (c.getDescricao().equals(curso.getDescricao())) {
-				throw new RuntimeException("Curso com essa descrição já é existente");
+				throw new RuntimeException("Erro no cadastro : Curso com essa descrição já é existente");
 			}
 		}
 

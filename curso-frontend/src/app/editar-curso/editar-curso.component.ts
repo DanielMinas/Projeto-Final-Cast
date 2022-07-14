@@ -54,7 +54,7 @@ export class EditarCursoComponent implements OnInit {
 
       },
       (e) => {
-        console.log(e);
+        this.mensagem = e.error 
       }
     )
 
@@ -90,13 +90,12 @@ export class EditarCursoComponent implements OnInit {
       curso, { responseType: 'text' }).subscribe(
         data => {
        
-          this.mensagem = data;
+          this.mensagem = "Curso editado com sucesso";
           this.formEdicao.reset();
         },
         e => {
-          alert(e.error);
-          this.mensagem = "Edição não realizada";
-          console.log(e);
+      
+          this.mensagem = e.error;
         }
       )
   }

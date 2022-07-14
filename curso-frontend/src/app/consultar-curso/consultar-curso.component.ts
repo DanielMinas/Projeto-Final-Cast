@@ -11,6 +11,7 @@ import { environment } from 'src/environments/environment';
 export class ConsultarCursoComponent implements OnInit {
   curso: any[] = [];
 
+  mensagem: string = '';
   formConsulta!: FormGroup;
   constructor(
     private httpClient: HttpClient,
@@ -55,7 +56,7 @@ export class ConsultarCursoComponent implements OnInit {
             this.ngOnInit();
           },
           (e) => {
-            console.log(e);
+            this.mensagem=e.error
           }
         )
     }
@@ -80,6 +81,12 @@ export class ConsultarCursoComponent implements OnInit {
         
       },
     )
+  }
+
+  limpar(){
+    this.formPeriodo.reset();
+    this.ngOnInit();
+
   }
 
   

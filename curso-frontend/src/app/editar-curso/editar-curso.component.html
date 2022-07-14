@@ -3,15 +3,15 @@
 
 <div class="container">
 
-    <div class="row-1">
-        
+    <div id="cabecalho">
+        <div *ngIf="mensagem" class="mb-3 alert alert-primary">
+            <strong>{{mensagem}}</strong>
+          </div>
         <div class="col-md-6">
         <h5 >Edição de cursos</h5>
         </div>
     </div>
-    <div *ngIf="mensagem" class="mb-3 alert alert-primary">
-        <strong>{{mensagem}}</strong>
-      </div>
+   
     
     <div class="card" id="card">
         <div class="card-body" id="card-body">
@@ -78,7 +78,7 @@
                 </div>
             </div>
             <div class="col-md-12">
-                <input type="submit"  id="botao" [disabled]="!formEdicao.valid" class="btn btn-primary" value="Realizar o Cadastro">
+                <input type="submit"  id="botao" [disabled]="!formEdicao.valid" class="btn btn-outline-primary" value="Realizar Edição">
             </div>
         </div>
         

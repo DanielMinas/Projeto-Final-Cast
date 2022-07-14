@@ -1,0 +1,16 @@
+#cabecalho {
+    margin-left: 11%;
+    margin-top: 10%;
+}
+
+.card {
+    top: 10%;
+    left: 10%;
+}
+
+#botao {
+    position: absolute;
+    top: 300px;
+    right: 0;
+    margin-right: 5px;
+}

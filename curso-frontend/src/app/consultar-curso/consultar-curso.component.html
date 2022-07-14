@@ -1,99 +1,102 @@
 <div class="container">
-    
-    
-    <h5>Consulta de pacientes</h5>
+
+    <div id="cabecalho">
+        <div *ngIf="mensagem" class="mb-3 alert alert-danger">
+            <strong>{{mensagem}}</strong>
+        </div>
+        <h5>Consulta de Cursos</h5>
+    </div>
+
     <div class="row-3">
+
         <div class="col-6 col-md-12 col-sm-6">
-            <div class="card" >
-                <div class="card-body" >
-                    <div class="col-12 col-md-12"> <form [formGroup]="formPeriodo" (ngSubmit)="onSubmit()">
-                        <div class="row mb-3">
-                            <div class="col-md-4">
-                                <label for="">Descricao</label>
-                                <input type="text" class="form-control" formControlName="descricao">
-                                <div class="text-danger" *ngIf="form.descricao.touched && form.descricao.invalid">
-                                    <span *ngIf="form.descricao.errors.required">
-                                        Informe o a descricao do curso
-                                    </span>
+            <div class="card col-12">
+                <div class="card-body">
+                    <div class="col-12 col-md-12">
+                        <form [formGroup]="formPeriodo" (ngSubmit)="onSubmit()">
+                            <div class="row mb-12">
+                                <div class="col-md-3">
+                                    <label for="">Descricao</label>
+                                    <input type="text" class="form-control" formControlName="descricao">
                                 </div>
-                            </div>
-    
-                            <div class="col-md-3">
-                                <label for="">Data de Inicio</label>
-                                <input type="date" class="form-control" formControlName="dataInicio">
-                                <div class="text-danger" *ngIf="form.dataInicio.touched && form.dataInicio.invalid">
-                                    <span *ngIf="form.dataInicio.errors.required">
-                                        Informe a data de inicio
-                                    </span>
+
+                                <div class="col-md-3">
+                                    <label for="">Data de Inicio</label>
+                                    <input type="date" class="form-control" formControlName="dataInicio">
                                 </div>
-                            </div>
-    
-                            <div class="col-md-3">
-                                <label for="">Data de Termino</label>
-                                <input type="date" class="form-control" formControlName="dataTermino">
-                                <div class="text-danger" *ngIf="form.dataTermino.touched && form.dataTermino.invalid">
-                                    <span *ngIf="form.dataTermino.errors.required">
-                                        Informe a Data de Termino
-                                    </span>
+
+                                <div class="col-md-3">
+                                    <label for="">Data de Termino</label>
+                                    <input type="date" class="form-control" formControlName="dataTermino">
+
                                 </div>
                                
-                            </div>
-                            <div class="col-md-2">
-                                <input type="submit" class="btn btn-primary" value="Enviar" style="margin-top: 23px">
-                            </div>
-                        
-                                   
-                            
-                        </div>
-                        </form>
-                                <div class="table-responsive">
-                                    <table class="table ">
-                                        <thead>
-                                            <tr>
-                                                <th>Decrição do Produto</th>
-                                                <th>Data de Inicio</th>
-                                                <th>Data de Termino</th>
-                                                <th>Quantidade</th>
-                                                <th>Categorias</th>
-                                                <th width="160">Operações</th>
-                                            </tr>
-                                        </thead>
-                                        <div class="col-mb-6"></div>
-                                        <tbody>
-                                            <tr *ngFor="let c of curso">
-                                                <td>{{c.descricao}}</td>
-                                                <td>{{c.dataInicio | date: 'dd/MM/yyyy '}}</td>
-                                                <td>{{c.dataTermino | date: 'dd/MM/yyyy '}}</td>
-                                                <td>{{c.quantidade}}</td>
-                                                <td>{{c.categoria.categoria}}</td>
-                                                <td>
-                                                    <button class="btn btn-sm btn-primary"
-                                                        [routerLink]="['/editar-curso', c.idCurso]">
-                                                        Editar
-                                                    </button>
-                                                    &nbsp;
-                                                    <button class="btn btn-sm btn-danger" (click)="excluir(c.idCurso)">
-                                                        Excluir
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <td colspan="6">
-                                                    Total de registros: {{curso.length}}
-                                                </td>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
-                                </div></div>
-                   
-                        </div>
-                </div>
-        </div>
-       
+                                <div class="col-md-1">
+                                    
 
+                                      <button type="submit" class="btn btn-outline-primary px-3"  style="margin-top: 23px"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                                      </svg></button>
+                                </div>
+                                <div class="col-md-1">
+                                    <button type="submit" class="btn btn-outline-warning" style="margin-top: 23px"
+                                        (click)="limpar()">Limpar</button>
+                                </div>
+
+
+
+                            </div>
+                        </form>
+                        <hr>
+                        <div class="table-responsive">
+                            <table class="table ">
+                                <thead>
+                                    <tr>
+                                        <th>Decrição do Produto</th>
+                                        <th>Data de Inicio</th>
+                                        <th>Data de Termino</th>
+                                        <th>Quantidade</th>
+                                        <th>Categorias</th>
+                                        <th width="160">Operações</th>
+                                    </tr>
+                                </thead>
+                                <div class="col-mb-6"></div>
+                                <tbody>
+                                    <tr *ngFor="let c of curso">
+                                        <td>{{c.descricao}}</td>
+                                        <td>{{c.dataInicio | date: 'dd/MM/yyyy '}}</td>
+                                        <td>{{c.dataTermino | date: 'dd/MM/yyyy '}}</td>
+                                        <td>{{c.quantidade}}</td>
+                                        <td>{{c.categoria.categoria}}</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-primary"
+                                                [routerLink]="['/editar-curso', c.idCurso]">
+                                                Editar
+                                            </button>
+                                            &nbsp;
+                                            <button class="btn btn-sm btn-outline-danger" (click)="excluir(c.idCurso)">
+                                                Excluir
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="6">
+                                            Total de registros: {{curso.length}}
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
 
 
     </div>
+
+
+</div>
