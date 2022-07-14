@@ -1,0 +1,30 @@
+.main {
+    min-height: 100%;
+    width: 100%;
+    position: relative;
+    display: block;
+}
+
+#sidebar {
+    min-height: 100%;
+    position: absolute;
+    overflow: none;
+    background-color: #8484ff;
+}
+
+.curso-side-bar {
+    text-align: center;
+    font-size: 18px;
+}
+
+#cadastrar:hover {
+    background-color: white;
+    color: black;
+
+}
+
+#consultar:hover {
+    background-color: white;
+    color: black;
+
+}
