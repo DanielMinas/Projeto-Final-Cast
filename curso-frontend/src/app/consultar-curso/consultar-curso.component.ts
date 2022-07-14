@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -8,9 +9,9 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./consultar-curso.component.css']
 })
 export class ConsultarCursoComponent implements OnInit {
-  cursos: any[] = [];
+  curso: any[] = [];
 
-
+  formPesquisa!: FormGroup;
   constructor(
     private httpClient: HttpClient,
 
@@ -19,12 +20,21 @@ export class ConsultarCursoComponent implements OnInit {
   //método executado quando o componente é aberto
   ngOnInit(): void {
 
+    this.formPesquisa = new FormGroup({
+      //campos formulario
+      descricao: new FormControl('', [Validators.required]),
+      dataInicio: new FormControl('', [Validators.required]),
+      dataTermino: new FormControl('', [Validators.required]),
+      quantidade: new FormControl('', [Validators.required]),
+      categoria: new FormControl('', [Validators.required])
 
+    })
 
-    this.httpClient.get(environment.apiUrl + '/get')
+    this.httpClient.get(environment.apiUrl + '/getAll?descricao=' + this.formPesquisa.value.descricao + "&dataInicio=" + this.formPesquisa.value.dataInicio + "&dataTermino=" + this.formPesquisa.value.dataTermino)
       .subscribe(
         (data) => {
-          this.cursos = data as any[];
+          this.curso = data as any[];
+          console.log(data)
         },
         (e) => {
           console.log(e);
@@ -41,8 +51,8 @@ export class ConsultarCursoComponent implements OnInit {
         { responseType: 'text' })
         .subscribe(
           (data) => {
-            alert(data); //exibir mensagem em uma janela popup
-            this.ngOnInit(); //recarregar a consulta de produtos
+            alert(data);
+            this.ngOnInit();
           },
           (e) => {
             console.log(e);

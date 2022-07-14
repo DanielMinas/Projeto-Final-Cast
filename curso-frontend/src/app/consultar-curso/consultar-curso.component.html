@@ -1,1 +1,53 @@
-<p>consultar-curso works!</p>
+<div class="container">
+    <h5>Consulta de pacientes</h5>
+<div class="row-3">
+    <div class="card" id="card">
+        <div class="card-body" id="card-body">
+    <div class="col-mb-6">
+        <table class="table table-hover table-sm">
+            <thead>
+                <tr>
+                    <th>Decrição do Produto</th>
+                    <th>Data de Inicio</th>
+                    <th>Data de Termino</th>
+                    <th>Quantidade</th>
+                    <th>Categorias</th>
+                    <th width="160">Operações</th>
+                </tr>
+            </thead>
+            <div class="col-mb-6"></div>
+            <tbody>
+                <tr *ngFor="let c of curso">
+                    <td>{{c.descricao}}</td>
+                    <td>{{c.dataInicio | date: 'dd/MM/yyyy '}}</td>
+                    <td>{{c.dataTermino | date: 'dd/MM/yyyy '}}</td>
+                    <td>{{c.quantidade}}</td>
+                    <td>{{c.categoria.categoria}}</td>
+                    <td>
+                        <button class="btn btn-sm btn-primary" [routerLink]="['/editar-curso', c.idCurso]">
+                            Editar
+                        </button>
+                        &nbsp;
+                        <button class="btn btn-sm btn-danger" (click)="excluir(c.idCurso)">
+                            Excluir
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="6">
+                        Total de registros: {{curso.length}}
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+        </div>
+        </div>
+    </div>
+    
+</div>
+    
+
+</div>
+
